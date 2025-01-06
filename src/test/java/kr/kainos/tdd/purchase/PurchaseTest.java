@@ -19,7 +19,7 @@ public class PurchaseTest {
   }
 
   private List<Integer> createLottoNumbers() {
-    return new Random().ints()
+    return new Random().ints(1, 46)
             .limit(6)
             .boxed()
             .collect(Collectors.toList());
