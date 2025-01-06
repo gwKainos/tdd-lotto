@@ -23,13 +23,15 @@ public class PurchaseTest {
 
   @Test
   public void purchaseLotto_insufficientMoney() throws Exception {
-    LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(2000, 3);
+    LottoPurchaseRequest request = new LottoPurchaseRequest(2000, 3);
+    LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(request);
     assertEquals("금액이 부족합니다.", lottoPurchaseResult.getMessage());
   }
 
   @Test
   public void purchaseLotto_exactAmount() throws Exception {
-    LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(3000, 3);
+    LottoPurchaseRequest request = new LottoPurchaseRequest(3000, 3);
+    LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(request);
 
     assertEquals(3, lottoPurchaseResult.getLotto().size());
     assertEquals(0, lottoPurchaseResult.getMoney());
@@ -38,7 +40,8 @@ public class PurchaseTest {
 
   @Test
   public void purchaseLotto_withChange() throws Exception {
-    LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(5500, 5);
+    LottoPurchaseRequest request = new LottoPurchaseRequest(3000, 3);
+    LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(request);
     assertEquals(5, lottoPurchaseResult.getLotto().size());
     assertEquals(500, lottoPurchaseResult.getMoney());
     assertEquals("5장이 발행 되었습니다", lottoPurchaseResult.getMessage());
