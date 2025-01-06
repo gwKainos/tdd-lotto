@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 public class PurchaseTest {
+  private static final int LOTTO_PRICE = 1000;
 
   @Test
   public void generateLottoNumbers() throws Exception {
@@ -18,6 +19,13 @@ public class PurchaseTest {
     assertTrue(lottoNumbers.stream().allMatch(num -> num >= 1 && num <= 45),
             "로또 번호는 1~45 입니다.");
     assertEquals(6, Set.copyOf(lottoNumbers).size(), "로또 번호는 중복되지 않아야 합니다.");
+  }
+
+  @Test
+  public void purchaseLotto_insufficientMoney() throws Exception {
+    LottoPurchaseResult lottoPurchaseResult = purchaseLotto(2000, 3);
+    assertEquals("금액이 부족합니다.", lottoPurchaseResult.getMessage());
+
   }
 
   private List<Integer> createLottoNumbers() {
