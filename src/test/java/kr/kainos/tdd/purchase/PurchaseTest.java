@@ -38,6 +38,14 @@ public class PurchaseTest {
     assertEquals("3장이 발행 되었습니다", lottoPurchaseResult.getMessage());
   }
 
+  @Test
+  public void purchaseLotto_withChange() throws Exception {
+    LottoPurchaseResult lottoPurchaseResult = purchaseLotto(5500, 5);
+    assertEquals(5, lottoPurchaseResult.getLotto().size());
+    assertEquals(500, lottoPurchaseResult.getMoney());
+    assertEquals("5장이 발행 되었습니다", lottoPurchaseResult.getMessage());
+  }
+
   private LottoPurchaseResult purchaseLotto(int totalMoney, int gameCount) {
     int affordableGames = totalMoney / LOTTO_PRICE;
     int purchasableGames = Math.min(affordableGames, gameCount);
