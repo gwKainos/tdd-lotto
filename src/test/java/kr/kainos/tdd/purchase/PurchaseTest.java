@@ -22,6 +22,7 @@ public class PurchaseTest {
 
   private List<Integer> createLottoNumbers() {
     return new Random().ints(1, 46)
+            .distinct()
             .limit(6)
             .boxed()
             .collect(Collectors.toList());
