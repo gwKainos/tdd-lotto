@@ -30,18 +30,7 @@ public class PurchaseTest {
   }
 
   private LottoPurchaseResult purchaseLotto(int totalMoney, int gameCount) {
-      int affordableGames = totalMoney / LOTTO_PRICE;
-      int purchasableGames = Math.min(affordableGames, gameCount);
-      int remainingMoney = totalMoney - (purchasableGames * LOTTO_PRICE);
-
-      List<List<Integer>> lottoSets = IntStream.range(0, purchasableGames)
-              .mapToObj(i -> createLottoNumbers())
-              .collect(Collectors.toList());
-
-      String message = purchasableGames == gameCount ?
-              purchasableGames + "장이 발행되었습니다" : "금액이 부족합니다.";
-
-      return new LottoPurchaseResult(lottoSets, remainingMoney, message);
+      return new LottoPurchaseResult(null, 0, "금액이 부족합니다.");
     }
 
   private List<Integer> createLottoNumbers() {
