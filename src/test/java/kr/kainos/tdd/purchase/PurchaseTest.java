@@ -23,8 +23,15 @@ public class PurchaseTest {
   }
 
   @Test
+  public void purchaseLotto_failsWhenAmountIsLessThanLottoPrice() throws Exception {
+    LottoPurchaseRequest request = new LottoPurchaseRequest(10000, 0);
+    LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(request);
+    assertEquals("발행 갯수는 0이 될수 없습니다.", lottoPurchaseResult.getMessage());
+  }
+
+  @Test
   public void purchaseLotto_insufficientMoneyWhenZeroAmount() throws Exception {
-    LottoPurchaseRequest request = new LottoPurchaseRequest(0, 0);
+    LottoPurchaseRequest request = new LottoPurchaseRequest(0, 1);
     LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(request);
     assertEquals("금액이 부족합니다.", lottoPurchaseResult.getMessage());
   }

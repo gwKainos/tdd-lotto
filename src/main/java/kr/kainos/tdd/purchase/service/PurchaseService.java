@@ -18,11 +18,11 @@ public class PurchaseService {
     int purchasableGames = Math.min(affordableGames, lottoPurchaseRequest.getCount());
     int remainingMoney = lottoPurchaseRequest.getMoney() - (purchasableGames * LOTTO_PRICE);
 
-    if (lottoPurchaseRequest.getMoney() < LOTTO_PRICE || lottoPurchaseRequest.getCount() <= 0) {
+    if (lottoPurchaseRequest.getCount() == 0) {
       return new LottoPurchaseResult(
               List.of(),
               lottoPurchaseRequest.getMoney(),
-              "금액이 부족합니다."
+              "발행 갯수는 0이 될수 없습니다."
       );
     }
 
