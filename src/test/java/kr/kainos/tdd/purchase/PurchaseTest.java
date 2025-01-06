@@ -13,7 +13,9 @@ public class PurchaseTest {
   @Test
   public void generateLottoNumbers() throws Exception {
     List<Integer> lottoNumbers = createLottoNumbers();
-    assertEquals(6, lottoNumbers.size());
+    assertEquals(6, lottoNumbers.size(), "로또 번호는 6개여야 합니다.");
+    assertTrue(lottoNumbers.stream().allMatch(num -> num >= 1 && num <= 45),
+            "로또 번호는 1~45 입니다.");
   }
 
   private List<Integer> createLottoNumbers() {
