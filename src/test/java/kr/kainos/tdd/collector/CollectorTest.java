@@ -1,8 +1,8 @@
-package kr.kainos.tdd.drawings;
+package kr.kainos.tdd.collector;
 
 import org.junit.jupiter.api.Test;
 
-public class DrawingsTest {
+public class CollectorTest {
   @Test
   public void nothing() throws Exception {
   }
