@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Set;
+import kr.kainos.tdd.purchase.domain.LottoPurchaseRequest;
 import kr.kainos.tdd.purchase.domain.LottoPurchaseResult;
 import kr.kainos.tdd.purchase.service.PurchaseService;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,7 @@ public class PurchaseTest {
 
   @Test
   public void purchaseLotto_withChange() throws Exception {
-    LottoPurchaseRequest request = new LottoPurchaseRequest(3000, 3);
+    LottoPurchaseRequest request = new LottoPurchaseRequest(5500, 5);
     LottoPurchaseResult lottoPurchaseResult = purchaseService.purchaseLotto(request);
     assertEquals(5, lottoPurchaseResult.getLotto().size());
     assertEquals(500, lottoPurchaseResult.getMoney());
