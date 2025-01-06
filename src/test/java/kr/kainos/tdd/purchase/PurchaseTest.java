@@ -14,7 +14,6 @@ public class PurchaseTest {
   public void generateLottoNumbers() throws Exception {
     List<Integer> lottoNumbers = createLottoNumbers();
     assertEquals(6, lottoNumbers.size());
-    System.out.println(lottoNumbers);
   }
 
   private List<Integer> createLottoNumbers() {
