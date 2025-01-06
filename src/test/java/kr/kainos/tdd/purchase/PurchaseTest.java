@@ -12,6 +12,7 @@ import kr.kainos.tdd.purchase.domain.LottoPurchaseResult;
 import org.junit.jupiter.api.Test;
 
 public class PurchaseTest {
+
   private static final int LOTTO_PRICE = 1000;
 
   @Test
@@ -38,8 +39,20 @@ public class PurchaseTest {
   }
 
   private LottoPurchaseResult purchaseLotto(int totalMoney, int gameCount) {
-      return new LottoPurchaseResult(null, 0, "금액이 부족합니다.");
-    }
+    int affordableGames = totalMoney / LOTTO_PRICE;
+    int purchasableGames = Math.min(affordableGames, gameCount);
+    int remainingMoney = totalMoney - (purchasableGames * LOTTO_PRICE);
+
+    List<List<Integer>> lottoSets = IntStream.range(0, purchasableGames)
+            .mapToObj(i -> createLottoNumbers())
+            .collect(Collectors.toList());
+
+    String message = purchasableGames == gameCount ?
+            purchasableGames + "장이 발행 되었습니다" : "금액이 부족합니다.";
+
+    return new LottoPurchaseResult(lottoSets, remainingMoney, message);
+  }
+
 
   private List<Integer> createLottoNumbers() {
     return new Random().ints(1, 46)
